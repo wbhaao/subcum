@@ -1,0 +1,49 @@
+body{
+    transition: 0.3s;
+}
+h1{
+    font-size: 56px;
+    text-align: center;
+    padding: 100px;
+}
+#name{
+    border-radius: 32px;
+    font-size: 22px;
+    width:500px; 
+    height:45px;
+    border:none;
+    
+    box-shadow: 0 4px 12px rgba(1, 1, 1, 0.3);
+    transform: translate(-50%, -50%);
+    transition: 0.3s;
+;
+    text-align:center;
+}
+#name:focus {
+    border-radius: 12px;
+    outline: none; 
+}
+.input{
+    padding-left: 50%;
+    padding-right: 50%;
+}
+
+.lnk{
+    margin: 8px;
+    text-align:right;
+    color: black;
+    transition: 0.3s;
+    text-decoration-line : none;
+}
+
+.lnk:hover{
+    text-decoration-line : underline;
+}
+
+#lnkParent{
+    text-align: right;
+}
+
+#login_div{
+    text-align: center;
+}
