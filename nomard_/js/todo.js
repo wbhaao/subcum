@@ -2,21 +2,16 @@ const toDoForm = document.querySelector("#todo-form")
 const toDoInput = toDoForm.querySelector("input")
 const toDoList = document.querySelector("#todo-list")
 
-const toDos = []
+let toDos = []
 const TODO_KEY = "todos"
 
+// localStorage에 있는거 빼오는 용도
 function loadToDo() {
-    todos = localStorage.getItem(TODO_KEY)
-    console.log(todos)
-    todos = todos.slice(1, todos.length-1)
-    for (let index = 0; index < todos.replace('"', '').length-1; index++) {
-        todos = todos.replace('"', '')
-    }
-    todos = todos.split(",")
-    console.log(typeof(todos))
-    for (let index = 0; index < todos.length; index++) {
-        paintToDo(todos[index])
-        console.log(todos[index])
+    storage_todos = localStorage.getItem(TODO_KEY)
+    storage_todos = JSON.parse(storage_todos)
+    for (let index = 0; index < storage_todos.length; index++) {
+        paintToDo(storage_todos[index])
+        console.log(storage_todos[index])
     }
 }
 
@@ -25,10 +20,19 @@ function saveToDo() {
 }
 
 function deleteToDo(event) {
-    event.target.parentElement.remove()
+    li = event.target.parentElement
+    ind = li.querySelector("span").innerText
+    console.log("ind:"+ind)
+    for (let index = 0; index < toDos.length; index++) {
+        if (toDos[index].id === li.id){
+            toDos.splice(index, 1);
+        }
+    }
+    saveToDo();
+    li.remove()
 }
 
-function paintToDo(newToDo){
+function paintToDo(newToDoObg){
     const li = document.createElement('li');
     const span = document.createElement('span');
     const button = document.createElement('button');
@@ -36,17 +40,31 @@ function paintToDo(newToDo){
     button.addEventListener("click", deleteToDo)
     li.appendChild(span);
     li.appendChild(button);
-    span.innerText = newToDo;
+    li.id = newToDoObg.id
+
+    span.innerText = newToDoObg.text;
     toDoList.appendChild(li)
 }
 
 function onToDoSubmit(event){
     event.preventDefault(); 
-    paintToDo(toDoInput.value)
-    toDos.push(toDoInput.value)
+    newToDoObg = {
+        "id":`${Date.now()}${Math.random() * 100}` ,
+        "text":toDoInput.value
+    }
+    paintToDo(newToDoObg)
+    toDos.push(newToDoObg)
     toDoInput.value = ""
+    // 현재 list를 저장
     saveToDo();
 }
 
-loadToDo();
 toDoForm.addEventListener("submit", onToDoSubmit);
+  
+const savedToDos = localStorage.getItem(TODO_KEY);
+// 얘도 localStorage에 있는거 빼오는 용도
+if (savedToDos !== null) {
+  const parsedToDos = JSON.parse(savedToDos);
+  toDos = parsedToDos
+  parsedToDos.forEach((item) => paintToDo(item));
+}
