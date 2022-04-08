@@ -3,31 +3,44 @@ const toDoInput = toDoForm.querySelector("input")
 const toDoList = document.querySelector("#todo-list")
 
 let toDos = []
+const SUBMIT_KEY = "submit"
 const TODO_KEY = "todos"
-var beforeId = -1
-var beforeText = ""
+const CLICK_KEY = "click"
+const BEFORE_ID_KEY = "beforeId"
+// id로 찾으니까 
+// var beforeText = ""
 
 
 function aaSubmit(event){
     event.preventDefault()
     const span = document.createElement("span");
     const retButton = document.createElement('button');
-    
-    idIndex = toDos.indexOf(beforeId)
+    beforeId = localStorage.getItem(BEFORE_ID_KEY)
+    // 전 text의 id
+    toDosId = []
+    for (let index = 0; index < toDos.length; index++) {
+        toDosId.push(toDos[index].id)
+    }
+
+    let idIndex = toDosId.indexOf(beforeId)
+    console.log("idIndex:"+idIndex);
     function reTouchFilter(todo){
         return todo.id !== beforeId
     }
-    
+    // 전 spanText 제거
     toDos = toDos.filter(reTouchFilter);
     newToDoObg = {
         "id":`${Date.now()}${Math.random() * 100}` ,
         "text":event.target.querySelector("input").value
     }
+    // span 텍스트 지정
     span.innerText = newToDoObg.text
     
     retButton.innerText = "✏️";
-    retButton.addEventListener("click", reTouchToDo);
+    retButton.addEventListener(CLICK_KEY, reTouchToDo);
+    // 원래 Text Index에 현 textObg 추가
     toDos.splice(idIndex, 0, newToDoObg);
+    // 새 span이랑 retouch 버튼 추가
     event.target.parentElement.insertBefore(span, event.target)
     event.target.parentElement.insertBefore(retButton, event.target)
     
@@ -53,25 +66,22 @@ function reTouchToDo(event) {
     const input = document.createElement('input');
     const form = document.createElement('form');
     
-    input.required = true
-    input.maxLength = 70
-    input.type = "text"
-    input.placeholder = "what's your toDo"
-    form.addEventListener("submit", aaSubmit);
+    input.required = true;
+    input.maxLength = 70;
+    input.type = "text";
+    input.placeholder = "what's your toDo";
+    form.addEventListener(SUBMIT_KEY, aaSubmit);
     
-    form.appendChild(input)
-    // const button = document.createElement('button');
-    // button.innerText = "✅"
-    const span_ = li.querySelector("span")
-    beforeId = li.id
-    beforeText = span_.innerText
-    console.log(span_)
-    console.log(beforeText)
-    // li.insertBefore(button, event.target)
-    li.insertBefore(form, span_)
-    event.target.remove()
+    form.appendChild(input);
+    const span_ = li.querySelector("span");
+    // 삭제 될떄 저장하기
+    localStorage.setItem(BEFORE_ID_KEY, li.id);
+    console.log(localStorage.getItem(BEFORE_ID_KEY));
+    console.log("hgl");
+    li.insertBefore(form, span_);
+    event.target.remove();
     
-    span_.remove()
+    span_.remove();
 }
 
 function deleteToDo(event) {
@@ -87,9 +97,9 @@ function paintToDo(newToDoObg){
     const delButton = document.createElement('button');
     const retButton = document.createElement('button');
     delButton.innerText = "❌";
-    delButton.addEventListener("click", deleteToDo);
+    delButton.addEventListener(CLICK_KEY, deleteToDo);
     retButton.innerText = "✏️";
-    retButton.addEventListener("click", reTouchToDo);
+    retButton.addEventListener(CLICK_KEY, reTouchToDo);
     li.appendChild(span);
     li.appendChild(retButton);
     li.appendChild(delButton);
@@ -114,7 +124,7 @@ function onToDoSubmit(event){
     saveToDo();
 }
 
-toDoForm.addEventListener("submit", onToDoSubmit);
+toDoForm.addEventListener(SUBMIT_KEY, onToDoSubmit);
   
 const savedToDos = localStorage.getItem(TODO_KEY);
 // 얘도 localStorage에 있는거 빼오는 용도
