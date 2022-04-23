@@ -34,7 +34,7 @@ def random_Name():
     return chr(name)
 
 # 크롬 선택
-my_click("chrome.png", 10)
+my_click("asset/chrome.png", 10)
 time.sleep(SLEEP_TIME*1.5)
 # 링크 입력
 my_write("https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp")
@@ -68,7 +68,7 @@ time.sleep(SLEEP_TIME*1.5)
 # 전번 찍기
 my_write("01031620504")
 pyautogui.hotkey("enter")
-time.sleep(SLEEP_TIME*10)
+time.sleep(SLEEP_TIME*20)
 
 # 여기에 확인문자 받는 텀이 있어야함
 
@@ -86,7 +86,8 @@ time.sleep(SLEEP_TIME)
 pyautogui.moveTo(477, 598)
 pyautogui.click()
 time.sleep(SLEEP_TIME)
-my_click("May.png", 10)
+my_click("asset/May.png", 10)
+pyautogui.click()
 time.sleep(SLEEP_TIME)
 # 일
 pyautogui.moveTo(603, 606)
@@ -97,20 +98,21 @@ time.sleep(SLEEP_TIME)
 pyautogui.moveTo(462,690)
 pyautogui.click()
 time.sleep(SLEEP_TIME)
-my_click("male.png", 10)
+my_click("asset/male.png", 10)
+pyautogui.click()
 time.sleep(SLEEP_TIME*1.5)
 
-my_click("next.png", 10)
+my_click("asset/next.png", 10)
 time.sleep(SLEEP_TIME*1.5)
 
-my_click("skip.png", 10)
+my_click("asset/skip.png", 10)
 time.sleep(SLEEP_TIME*1.5)
 
 pyautogui.moveTo(1273,268)
 pyautogui.dragTo(1271,947)
 time.sleep(SLEEP_TIME)
-my_click("checkBox.png", 10)
+my_click("asset/checkBox.png", 10)
 time.sleep(SLEEP_TIME)
-my_click("checkBox.png", 10)
+my_click("asset/checkBox.png", 10)
 time.sleep(SLEEP_TIME)
-my_click("createAccount.png", 10)
+my_click("asset/createAccount.png", 10)
