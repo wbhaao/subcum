@@ -72,7 +72,7 @@ def solution(people, limit):
             del people[-1]
     answer = len(people) + cnt
     return answer
-print(solution([70, 50, 80, 50], 100))
+# print(solution([70, 50, 80, 50], 100))
 ########################################
 def solution(people, limit):
     answer = 0
@@ -95,3 +95,46 @@ def solution(people, limit):
     if e_cnt == f_cnt:
         answer += 1
     return answer
+
+def solution(s):
+    cnt_dict = {}
+    s = s[1:-1]
+    lst = s.split("}")[:-1]
+    for i in range(len(lst)):
+        lst[i] = lst[i].replace("{","")
+        if not (lst[i][0] in list(map(str, range(0,10)))):
+            lst[i] = lst[i][1:]
+        for x in lst[i].split(","):
+            if cnt_dict.get(x) == None:
+                cnt_dict[x] = 1
+            else:
+                cnt_dict[x] += 1
+    from operator import itemgetter
+    answer_temp = sorted(cnt_dict.items(), key=itemgetter(1), reverse=True)
+    answer = []
+    for a in answer_temp:
+        answer.append(a[0])
+    return list(map(int, answer))
+
+# print(solution("{{2},{2,1},{2,1,3},{2,1,3,4}}"))
+
+def solution(s):
+    answer = []
+    # 양끝'{', '}' 제거 // },{ 로 문자열 나누기
+    s1 = s.lstrip('{').rstrip('}').split('},{')
+    new_s = []
+    for i in s1:
+        # ,으로 문자열 나눠서 숫자 개별로 넣기(list로 넣음)
+        new_s.append(i.split(','))
+    # 길이가 짫은순대로 정렬 (list에 하나가 있으면 
+    # 제일 많이 들어가있고 2개가 들어가있으면 
+    # 그중 1번째,2번째가 들어가있다)
+    new_s.sort(key = len)
+    for i in new_s:
+        for j in range(len(i)):
+            # 이미 포함되있으면 안포함시킴(순차적으로 append)
+            if int(i[j]) not in answer:
+                answer.append(int(i[j]))
+    return answer
+
+print(solution("{{2},{2,1},{2,1,3},{2,1,3,4}}"))
