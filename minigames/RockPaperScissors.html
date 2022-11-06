@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+    count = 0;
+    clickNum = 1;
+
+    function clickBtn() {
+        count += clickNum
+        document.getElementById("Score").innerText = `${count}`
+    }
+
+</script>
+<link rel="stylesheet" href="RockPaperScissors.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1 id="Score">1</h1>
+        <div id="btnContainer">
+            <button onclick="clickBtn()">Start</button>
+            <button onclick="clickBtn()">Start</button>
+            <button onclick="clickBtn()">Start</button>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
