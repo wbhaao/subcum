@@ -3,12 +3,29 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script type="text/javascript">
-    count = 0;
-    clickNum = 1;
+    /* 게임 창을 보여준다 (창 안에서만 게임이 진행된다) */
+    function showWindow() {
+        const container = document.getElementById('container_');
+        const background = document.createElement('div');
 
-    function clickBtn() {
-        count += clickNum
-        document.getElementById("Score").innerText = `${count}`
+        background.style.backgroundColor = "white"
+        background.style.margin = "0"
+        // 중앙정렬 문법 (그냥 암기)
+        background.style.position = "absolute"
+        background.style.top = "50%"
+        background.style.left = "50%"
+        background.style.transform = "translate(-50%, -50%)"
+        background.style.left = "50%"
+        // 크기
+        background.style.height = "700px"
+        background.style.width = "1000px"
+        // 꾸미기
+        background.style.transition = "0.3s"
+        background.style.boxShadow = "0 4px 16px rgba(0,79,255,0.3)"
+        background.style.borderRadius = "20px"
+
+
+        container.appendChild(background)
     }
 
 </script>
@@ -16,14 +33,10 @@
 
 </head>
 <body>
-    <div class="container">
-        <h1 id="Score">1</h1>
-        <div id="btnContainer">
-            <button onclick="clickBtn()">Start</button>
-            <button onclick="clickBtn()">Start</button>
-            <button onclick="clickBtn()">Start</button>
+    <div id="container_" class="container">
+        <div class="center">
+            <button id="startBtn" onclick="showWindow()">Start</button>
         </div>
-        
     </div>
     
 </body>

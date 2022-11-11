@@ -1,27 +1,35 @@
-.container{
-    margin-top:200px;
-    text-align: center;
+.container {
+    height: 100%;
+    position: relative;
+}
+  
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
-button{
-    
-    display: block;
-    margin-bottom: 10px;
-	width:120px;
-	height: 40px;
+#startBtn{
+    width:120px;
+	height: 120px;
 	color:#fff;
 	background: #004fff;
-	font-size: 16px;
+	font-size: 24px;
+    font-weight: bolder;
 	border:none;
 	border-radius: 20px;
 	box-shadow: 0 4px 16px rgba(0,79,255,0.3);
 	transition:0.3s;
-	transform: translate(-50%,-50%);
 }
-button:focus {
+
+#startBtn:focus {
 	outline:0;
 }
-button:hover{
+
+#startBtn:hover{
 	background: rgba(0,79,255,0.9);
 	cursor: pointer;
 	box-shadow: 0 2px 4px rgba(0,79,255,0.6);
