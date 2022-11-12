@@ -3,10 +3,16 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <script type="text/javascript">
+
+    var score_ = 0
+    var upgrade_ = 1
+
     /* 게임 창을 보여준다 (창 안에서만 게임이 진행된다) */
     function showWindow() {
         const container = document.getElementById('container_');
         const background = document.createElement('div');
+
+        background.id = "gameMain"
 
         background.style.backgroundColor = "white"
         background.style.margin = "0"
@@ -19,13 +25,98 @@
         // 크기
         background.style.height = "700px"
         background.style.width = "1000px"
-        // 꾸미기
+        // 
         background.style.transition = "0.3s"
         background.style.boxShadow = "0 4px 16px rgba(0,79,255,0.3)"
         background.style.borderRadius = "20px"
 
-
         container.appendChild(background)
+        // UI 만들기
+        const exitBtn = document.createElement('button');
+        exitBtn.innerText = "exit"
+        exitBtn.style.backgroundColor = "red"
+        exitBtn.addEventListener("click", delWindow);
+        background.appendChild(exitBtn)
+
+
+        const score = document.createElement('h1');
+        const clickScore = document.createElement('h4');
+
+        score.innerText = score_
+        clickScore.innerText = upgrade_
+        score.style.textAlign = "center"
+        clickScore.style.textAlign = "center"
+
+        background.appendChild(score)
+        background.appendChild(clickScore)
+
+        const btn1 = document.createElement('button');
+        const btn2 = document.createElement('button');
+
+        btn1.style.width = "120px"
+        btn1.style.height = "120px"
+        btn1.style.color  = "#fff"
+        btn1.style.background  = "#004fff"
+        btn1.style.fontSize  = "24px"
+        btn1.style.fontWeight  = "bolder"
+        btn1.style.border  = "none"
+        btn1.style.borderRadius  = "20px"
+        btn1.style.border  = "none"
+        btn1.style.boxShadow = "0 4px 16px rgba(0,79,255,0.3)"
+        btn1.style.transition  = "0.3s"
+
+        btn2.id = "btn2"
+        btn2.style.width = "120px"
+        btn2.style.height = "120px"
+        btn2.style.color  = "#fff"
+        btn2.style.background  = "#004fff"
+        btn2.style.fontSize  = "24px"
+        btn2.style.fontWeight  = "bolder"
+        btn2.style.border  = "none"
+        btn2.style.borderRadius  = "20px"
+        btn2.style.border  = "none"
+        btn2.style.boxShadow = "0 4px 16px rgba(0,79,255,0.3)"
+        btn2.style.transition  = "0.3s"
+        // btn2.style.display = "inline"
+
+        btn1.innerText = "click me"
+        btn2.innerText = "upgrade"
+
+        btn1.addEventListener("click", clickFunc);
+        btn2.addEventListener("click", upgradeFunc);
+
+        background.appendChild(btn1)
+        background.appendChild(btn2)
+    }
+
+    function clickFunc() {
+        score_ += upgrade_
+        console.log("score_ : "+score_)
+        const score = document.querySelector('h1');
+
+        score.innerText = score_
+    }
+    function upgradeFunc() {
+        if (score_ >= upgrade_*5) {
+            score_ -= upgrade_*5
+            upgrade_ *= 2
+            console.log("upgrade_ : "+upgrade_)
+            const btn2 = document.querySelector('#btn2');
+            btn2.innerText = `up(${upgrade_*5})`
+            const clickScore = document.querySelector('h4');
+            clickScore.innerText = upgrade_
+            const score = document.querySelector('h1');
+            score.innerText = score_
+        } else{
+            alert("few moneys")
+        }
+        
+        
+        
+    }
+    function delWindow() {
+        const windows = document.querySelector('#gameMain');
+        windows.remove()
     }
 
 </script>

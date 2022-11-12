@@ -6,43 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<script type="text/javascript">
-    /* 게임 창을 보여준다 (창 안에서만 게임이 진행된다) */
-    function showWindow() {
-        const container = document.getElementById('container_');
-        const background = document.createElement('div');
-
-        background.style.backgroundColor = "white"
-        background.style.margin = "0"
-        // 중앙정렬 문법 (그냥 암기)
-        background.style.position = "absolute"
-        background.style.top = "50%"
-        background.style.left = "50%"
-        background.style.transform = "translate(-50%, -50%)"
-        background.style.left = "50%"
-        // 크기
-        background.style.height = "700px"
-        background.style.width = "1000px"
-        // 꾸미기
-        background.style.transition = "0.3s"
-        background.style.boxShadow = "0 4px 16px rgba(0,79,255,0.3)"
-        background.style.borderRadius = "20px"
-
-
-        container.appendChild(background)
-    }
-
-</script>
 <body style="background-color: rgb(117, 117, 236);">
-    <div onclick="showWindow()" class="container">
-        <div  class="card" id="pick">
-            <div class="img-gradient"></div>
-            <img class="image" src="img/rockpaper.png" alt="" srcset="">
-            <div class="text-wrap">
-                <h1>Rock Scissers Paper</h1>
-                <p>가위바위보</p>
-            </div>  
-        </div>
+    <div class="container">
+		<a href="RockPaperScissors.html">
+            <div  class="card" id="pick">
+                <div class="img-gradient"></div>
+                <img class="image" src="img/rockpaper.png" alt="" srcset="">
+                <div class="text-wrap">
+                    <h1>Rock Scissers Paper</h1>
+                    <p>가위바위보</p>
+                </div>  
+            </div>
+        </a>
+
+        
 		
 		<div class="card">
 			<div class="img-gradient"></div>
@@ -63,10 +40,6 @@
 			</div>
 		</div>
 	</div>
-    <div id="container_" class="container">
-        <div class="center">
-        </div>
-    </div>
 </body>
 </html>
 
